@@ -73,9 +73,11 @@ int Solutions3(const vector<int> &a, int left, int right) {
         return max_left_border_sum + max_right_border_sum;
 }
 
+
 int main() {
     vector<int> a = {-1, 4, -3, 5, -2, -1, -2, 6, -2, 7};
     cout << Solutions1(a) << endl;
     cout << Solutions2(a) << endl;
     cout << Solutions3(a, 0, a.size() - 1);
 }
+
