@@ -50,6 +50,32 @@ public:
         return *this;
     }
 
+    void reserve(int new_capacity){
+        if (new_capacity < capacity)
+            return;
+        Object *new_array = new Object[new_capacity];
+        for (int i = 0; i < size; ++i)
+            new_array[i] = std::move(objects[k]);
+        capacity = new_capacity;
+        std::swap(objects, new_array);
+        delete [] new_array;
+    }
+
+    void resize(int new_size){
+        if (new_size > capacity)
+            reserve(new_size * 2);
+        size = new_size;
+    }
+
+    // 两种[]重载 适应不同情况，const和非const，对应修改和访问
+    Object &operator[](int index){
+        return objects[index];
+    }
+
+    const Object &operator[](int index) const{
+        return objects[index];
+    }
+
     static const int SPARE_CAPACITY = 16; //静态变量，不能在对象的构造函数中初始化
 private:
     int size = 0;
