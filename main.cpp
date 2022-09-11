@@ -8,6 +8,8 @@ int main(){
     Vector<int> v;
     int a = 11;
     v.push_back(a);
+    v[0] = 99;
+    cout << a << v[0];
     return 0;
 }
 

@@ -112,6 +112,21 @@ public:
     using iterator = Object *;
     using const_iterator = const Object *;
 
+    iterator begin(){
+        return &objects_[0];
+    }
+    // 基于const的重载，函数的返回类型不能用来作为重载的标准
+    const_iterator begin() const{
+        return &objects_[0];
+    }
+    iterator end(){
+        return &objects_[size_]; // tail next to last
+    }
+
+    const_iterator end() const{
+        return &objects_[size_];
+    }
+
     static const int kSPARE_CAPACITY = 16; //静态变量，不能在对象的构造函数中初始化
 private:
     int size_ = 0;
