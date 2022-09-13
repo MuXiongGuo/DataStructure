@@ -72,7 +72,7 @@ public:
     Object &operator[](int index){
         return objects_[index];
     }
-
+    // 第一个const表示返回的对象不允许修改，第二个const修饰this，引起重载
     const Object &operator[](int index) const{
         return objects_[index];
     }
