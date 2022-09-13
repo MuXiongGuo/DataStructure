@@ -10,6 +10,10 @@ int main(){
     v.push_back(a);
     v[0] = 99;
     cout << a << v[0];
+
+    int i =19;
+    auto i1 = std::move(i);
+    cout << i << i;
     return 0;
-}
+}7
 
