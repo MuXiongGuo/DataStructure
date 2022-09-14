@@ -10,3 +10,5 @@ add_executable(Hoare_partition 7/Hoare_partition.cpp)
 add_executable(main main.cpp)
 target_sources(main PUBLIC "3/vector.h")
 target_sources(main PUBLIC "3/List.h" "3/List.cpp")
+
+add_executable(balance_symbol_use_stack 3/balance_symbol_use_stack.cpp)

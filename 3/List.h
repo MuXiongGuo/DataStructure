@@ -92,22 +92,40 @@ public:
 
 public:
     List() {
+        init();
     }
 
     List(const List &rhs) {
+        init();
+        for (auto &x:rhs)
+            push_back(x);
     }
 
     ~List() {
+        clear();
+        delete head;
+        delete tail;
     }
 
+    // 正常逻辑是先清空再拷贝, 但是代码没法复用了, 造一个空的直接换, 最后内存释放交给析构函数   注意swap的是*this this是指针 应该直接交换对象
     List &operator=(const List &rhs) {
-
+        List copy = rhs;
+        std::swap(*this, copy);
+        return *this;
     }
 
-    List(List &&rhs) noexcept {
+    List(List &&rhs) noexcept: theSize{rhs.theSize}, head{rhs.head}, tail{rhs.tail} {
+        rhs.theSize = 0;
+        rhs.head = nullptr;
+        rhs.tail = nullptr;
     }
 
     List &operator=(List &&rhs) noexcept {
+//        std::swap(*this, rhs);   不能这样写 因为以后会用到 则会死循环 std::swap(*this, rhs);这个会调用自己
+        std::swap(theSize, rhs.theSize);
+        std::swap(head, rhs.head);
+        std::swap(tail, rhs.tail);
+        return *this;
     }
 
     iterator begin() {
@@ -179,13 +197,33 @@ public:
         erase(--end());
     }
 
-    iterator insert(iterator itr, const Object &x);
+    iterator insert(iterator itr, const Object &x){
+        Node *p = itr.current;
+        theSize++;
+        return p->prev = p->prev->next = new Node(x, p->prev, p);
+    }
 
-    iterator insert(iterator itr, Object &&x);
+    iterator insert(iterator itr, Object &&x){
+        Node *p = itr.current;
+        theSize++;
+        return p->prev = p->prev->next = new Node(std::move(x), p->prev, p);
+    }
 
-    iterator erase(iterator itr);
+    iterator erase(iterator itr){
+        Node *p = itr.current;
+        iterator return_val = iterator{p->next};
+        theSize--;
+        p->prev->next = p->next;
+        p->next->prev = p->prev;
+        delete p;
+        return return_val;
+    }
 
-    iterator erase(iterator from, iterator to);
+    iterator erase(iterator from, iterator to){
+        for(iterator it = from; it != to;)
+            it = erase(it);
+        return to;
+    }
 
 
 private:
