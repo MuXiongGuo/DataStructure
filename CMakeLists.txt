@@ -12,3 +12,4 @@ target_sources(main PUBLIC "3/vector.h")
 target_sources(main PUBLIC "3/List.h" "3/List.cpp")
 
 add_executable(balance_symbol_use_stack 3/balance_symbol_use_stack.cpp)
+add_executable(3.1 3/3.1.cpp)
