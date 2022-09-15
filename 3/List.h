@@ -95,6 +95,12 @@ public:
         init();
     }
 
+    List(std::initializer_list<Object> &&il) {
+        init();
+        for (auto &&x:il)
+            push_back(std::move(x));
+    }
+
     List(const List &rhs) {
         init();
         for (auto &x:rhs)
