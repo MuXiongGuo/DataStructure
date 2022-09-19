@@ -6,6 +6,23 @@
 #include <vector>
 
 using namespace std;
+
+// 循环链表
+class Node {
+public:
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
+    }
+private:
+    int data;
+    Node *next;
+};
+
+//solution use list
+
+
+
 // my solution
 void JosephusSolution(int m, int n) {
     if (m == 0){
@@ -35,7 +52,7 @@ void JosephusSolution(int m, int n) {
             ++i;
             if (i > n)
                 i = 1;
-        }phux
+        }
     }
 }
 
@@ -71,8 +88,40 @@ int main(){
     return 0;
 }
 
-
-
+//leetcode
+//class Solution {
+//    struct Node{
+//        int data;
+//        Node *next;
+//        Node(int d){
+//            data = d;
+//            next = nullptr;
+//        }
+//    };
+//public:
+//    int lastRemaining(int n, int m) {
+//        Node *head = new Node(0);
+//        Node *team = head;
+//        for (int i = 1;i < n;++i){
+//            team->next = new Node(i);
+//            team = team->next;
+//        }
+//        int length = n;
+//        team->next = head;
+//        int index = 0;
+//        while(head->next != head->next->next){
+//            if (index == (m-2)%length){
+//                head->next = head->next->next;
+//                --length;
+//                index = 0;
+//            }
+//            else
+//                ++index;
+//            head = head->next;
+//        }
+//        return head->data;
+//    }
+//};
 
 
 

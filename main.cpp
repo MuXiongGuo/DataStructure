@@ -2,15 +2,18 @@
 #include "3/Vector.h"
 #include "3/List.h"
 #include <vector>
+#include "list"
+
+
 using namespace std;
 
 
-int &f(const int &a){
+int &f(const int &a) {
     int b = 99;
     return b;
 }
 
-int main(){
+int main() {
     //Vector<int> v{12,34,55};
 //    Vector<int> v(10);
 //    for(int i = 0; i<10;++i)
@@ -37,13 +40,22 @@ int main(){
 //    v4 = v3;
 //    vector<int>a;
 //    cout << a.size();
-    vector<int> v;
-    vector<int> v2(111);
-    List<vector<int>> v5 = {vector<int>(18)};
-    v5.push_back(vector<int>(13));
-    v5.push_back(std::move(v2));
+//    vector<int> v;
+//    vector<int> v2(111);
+//    List<vector<int>> v5 = {vector<int>(18)};
+//    v5.push_back(vector<int>(13));
+//    v5.push_back(std::move(v2));
 
     // 或者说 本质问题是 对一个引用类型 再取std::move的时候，会不会出现问题
+
+
+    list<int> ilist;
+    for (int i = 0; i != 11; ++i)
+        ilist.push_back(i);
+    auto iter = ilist.begin();
+    advance(iter, 3);
+    ilist.erase(iter);
+    cout << *ilist.begin();
     return 0;
 }
 
