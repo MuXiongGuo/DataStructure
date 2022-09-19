@@ -3,3 +3,4 @@
 *.xml
 *.gitignore
 *.name
+/.idea/sonarlint/issuestore/index.pb

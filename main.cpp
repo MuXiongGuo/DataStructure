@@ -7,10 +7,14 @@
 
 using namespace std;
 
+//
+//int &f(const int &a) {
+//    int b = 99;
+//    return b;
+//}
 
-int &f(const int &a) {
-    int b = 99;
-    return b;
+void f(const int &a = int()) {
+    cout << a << endl;
 }
 
 int main() {
@@ -49,13 +53,18 @@ int main() {
     // 或者说 本质问题是 对一个引用类型 再取std::move的时候，会不会出现问题
 
 
-    list<int> ilist;
-    for (int i = 0; i != 11; ++i)
-        ilist.push_back(i);
-    auto iter = ilist.begin();
-    advance(iter, 3);
-    ilist.erase(iter);
-    cout << *ilist.begin();
+//    list<int> ilist;
+//    for (int i = 0; i != 11; ++i)
+//        ilist.push_back(i);
+//    auto iter = ilist.begin();
+//    advance(iter, 3);
+//    ilist.erase(iter);
+//    cout << *ilist.begin();
+
+
+    f(11);
+    f();
+    std::cout << string("ddd");
     return 0;
 }
 
