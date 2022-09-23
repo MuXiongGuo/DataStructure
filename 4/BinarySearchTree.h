@@ -20,7 +20,9 @@ public:
 
     const Comparable &FindMax() const;
 
-    bool Contains(const Comparable &x) const;
+    bool Contains(const Comparable &x) const{
+        return Contains(x,root);
+    }
 
     bool IsEmpty() const;
 
@@ -28,11 +30,17 @@ public:
 
     void MakeEmpty();
 
-    void Insert(const Comparable &x);
+    void Insert(const Comparable &x){
+        Insert(x,root);
+    }
 
-    void Insert(Comparable &&x);
+    void Insert(Comparable &&x){
+        Insert(std::move(x),root);
+    }
 
-    void Remove(const Comparable &x);
+    void Remove(const Comparable &x){
+        Remove(x,root);
+    }
 
     BinarySearchTree &operator=(const Comparable &rhs) noexcept;
 
@@ -49,6 +57,20 @@ private:
         explicit BinaryNode(Comparable &&theElement, BinaryNode *lt, BinaryNode *rt)
                 : element{std::move(theElement)}, left{lt}, right{rt} {}
     };
+
+    BinaryNode *root;
+
+    void Insert(const Comparable &x, BinaryNode *&t);
+    void Insert(Comparable &&x, BinaryNode *&t);
+    void Remove(const Comparable &x, BinaryNode *&t);
+    BinaryNode *FindMin(BinaryNode *t) const;
+    BinaryNode *FindMax(BinaryNode *t) const;
+    bool Contains(const Comparable &x, BinaryNode *t) const{
+
+    }
+    void MakeEmpty(BinaryNode *&t);
+    void PrintTree(BinaryNode *t, ostream &out) const;
+    BinaryNode *Clone(BinaryNode *t) const;
 };
 
 #endif //DATASTRUCTURE_BINARYSEARCHTREE_H
