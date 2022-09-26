@@ -11,3 +11,5 @@ add_executable(3.1 3/3.1.cpp)
 add_executable(3.4_3.5 3/3.4_3.5.cpp)
 add_executable(3.6 3/3.6.cpp)
 target_sources(main PUBLIC "3/vector.h")
+
+add_executable(2 leetcode/2.cpp)

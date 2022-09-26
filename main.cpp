@@ -3,7 +3,7 @@
 #include "3/List.h"
 #include <vector>
 #include "list"
-
+#include "cmath"
 
 using namespace std;
 
@@ -62,9 +62,19 @@ int main() {
 //    cout << *ilist.begin();
 
 
-    f(11);
-    f();
-    std::cout << string("ddd");
+//    f(11);
+//    f();
+//    std::cout << string("ddd");
+
+    auto a = sizeof (int);
+    auto b = sizeof (double );
+    cout << a << '\n' << b;
+    cout << pow(10,2);
+    cout << 5/2;
+    int num_bit = 1;
+    int x = 32131;
+    int tem = x%int(pow(10, num_bit));
+    cout << int(1785465.6);
     return 0;
 }
 
