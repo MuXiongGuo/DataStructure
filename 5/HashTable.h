@@ -13,7 +13,8 @@ using namespace std;
 template<typename HashedObj>
 class HashTable {
 public:
-    explicit HashTable(int size = 101);
+    explicit HashTable(unsigned int size = 101) : current_size{0}, theLists{size}{
+    }
 
     bool contains(const HashedObj &x) const;
 
@@ -30,8 +31,42 @@ private:
     int current_size;
 
     void rehash();
-    size_t myhash(const HashedObj &x) const;
+    size_t myhash(const HashedObj &x) const{
+        static hash<HashedObj> hf;
+        return hf(x)%theLists.size();
+    }
 };
+
+template<typename Key>
+class hash{
+public:
+    size_t operator()(const Key &k) const{
+        static hash<Key> hf;
+        return hf(k);
+    }
+};
+
+
+class Employee{
+public:
+    const string &GetName() const{
+        return name;
+    }
+
+    bool operator==(const Employee &rhs) const{
+        return name==rhs.name;
+    }
+    bool operator!=(const Employee &rhs) const{
+        return !(rhs==*this);
+    }
+
+private:
+    string name;
+    double salary;
+    int seniority;
+};
+
+
 
 
 
