@@ -15,6 +15,11 @@ public:
         objects_ = new Object[capacity_];
     }
 
+    explicit Vector(const std::initializer_list<Object> &list) : size_(list.size()), capacity_(list.size() + kSPARE_CAPACITY) {
+        objects_ = new Object[capacity_];
+        std::copy(list.begin(), list.end(), objects_);
+    }
+
     // 1拷贝构造函数
     Vector(const Vector &rhs) : size_(rhs.size_), capacity_(rhs.capacity_), objects_(nullptr) {
         objects_ = new Object[capacity_];
