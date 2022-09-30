@@ -13,3 +13,6 @@ add_executable(3.6 3/3.6.cpp)
 target_sources(main PUBLIC "3/vector.h" "5/HashTable.h" "5/HashTable_2.h")
 
 add_executable(2 leetcode/2.cpp)
+
+add_executable(1 leetcode/1.cpp)
+add_executable(3 leetcode/3.cpp)
