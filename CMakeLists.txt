@@ -19,3 +19,7 @@ add_executable(3 leetcode/3.cpp)
 
 add_executable(11 leetcode/11.cpp)
 add_executable(4 leetcode/4.cpp)
+add_executable(5 leetcode/5.cpp)
+add_executable(704 leetcode/704.cpp)
+add_executable(35 leetcode/35.cpp)
+add_executable(34 leetcode/34.cpp)
