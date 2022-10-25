@@ -1,5 +1,6 @@
 #include "string"
 #include "iostream"
+#include "algorithm"
 
 using namespace std;
 
@@ -27,8 +28,26 @@ public:
     }
 };
 
+
+// 更好的答案  更简洁
+class Solution2 {
+public:
+    string reverseStr(string s, int k) {
+       for (int i = 0; i < s.size(); i+=2*k) {
+           if (i + k <= s.size())
+               reverse(s.begin()+i, s.begin()+i+k);
+           else
+               reverse(s.begin()+i, s.end());
+       }
+        return s;
+    }
+};
+
+
+
+
 int main() {
-    Solution s;
+    Solution2 s;
     string s1 = "abcdefg";
     int k = 2;
     string res = s.reverseStr(s1, k);
