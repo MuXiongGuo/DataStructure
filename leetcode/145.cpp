@@ -22,15 +22,23 @@ public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
         stack<TreeNode*> stk;
+        TreeNode *pre;
         while (!stk.empty() || root != nullptr) {
             while (root != nullptr) {
                 stk.emplace(root);
                 root = root->left;
             }
-            root = stk.top()->right
-
+            root = stk.top();
+            stk.pop();
+            if (root->right == nullptr || root->right == pre) {
+                ans.emplace_back(root->val);
+                pre = root;
+                root = nullptr;
+            } else {
+                stk.emplace(root);
+                root = root->right;
+            }
         }
-
-
+        return ans;
     }
 };

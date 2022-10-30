@@ -11,8 +11,9 @@ class Vector {
 public:
     // 五大函数
     // 0默认构造函数
-    explicit Vector(int init = 0) : size_(init), capacity_(init + kSPARE_CAPACITY) {
+    Vector(int init = 0) : size_(init), capacity_(init + kSPARE_CAPACITY) {
         objects_ = new Object[capacity_];
+        std::cout << "0默认构造函数" << std::endl;
     }
 
     explicit Vector(const std::initializer_list<Object> &list) : size_(list.size()), capacity_(list.size() + kSPARE_CAPACITY) {
@@ -26,6 +27,7 @@ public:
         for (int i = 0; i < size_; ++i) {
             objects_[i] = rhs.objects_[i];
         }
+        std::cout << "拷贝构造函数" << std::endl;
     }
 
     // 2拷贝赋值函数
@@ -33,6 +35,7 @@ public:
         if (this==&rhs) return *this; // 防止自赋值
         Vector copy = rhs;
         std::swap(*this, copy);
+        std::cout << "拷贝赋值函数" << std::endl;
         return *this;
     }
 
@@ -46,6 +49,7 @@ public:
         rhs.objects_ = nullptr;
         rhs.size_ = 0;
         rhs.capacity_ = 0;
+        std::cout << "移动构造函数" << std::endl;
     }
 
     // 5移动赋值函数
@@ -53,6 +57,7 @@ public:
         std::swap(size_, rhs.size_);
         std::swap(capacity_, rhs.capacity_);
         std::swap(objects_, rhs.objects_);
+        std::cout << "移动赋值函数" << std::endl;
         return *this;
     }
 

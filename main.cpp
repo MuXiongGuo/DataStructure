@@ -18,9 +18,9 @@ void f(const int &a = int()) {
 }
 
 int main() {
-    Vector<int> v{12,34,55};
-    for (auto i: v)
-        cout << i << ' ';
+//    Vector<int> v{12,34,55};
+//    for (auto i: v)
+//        cout << i << ' ';
  //   Vector<int> v(10);
 //    for(int i = 0; i<10;++i)
 //        v[i] = i;
@@ -81,7 +81,9 @@ int main() {
 //l1.push_back(10);
 //HashTable<int> h1;
 //vector<int> v2;
-auto a  = int{};
+//auto a  = int{};
+Vector<Vector<int>> q;
+q.push_back(2);
 return 0;
 }
 
