@@ -46,3 +46,20 @@ public:
         return res;
     }
 };
+
+//   深度优先  利用递归
+class Solution {
+public:
+    //深度优先遍历
+    vector<int> ret;
+    void _rightView(TreeNode* node, int depth) {
+        if (node == nullptr) return;
+        if (ret.size() == depth) ret.emplace_back(node->val);
+        if (node->right) _rightView(node->right, depth + 1);
+        if (node->left) _rightView(node->left, depth + 1);
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        _rightView(root, 0);
+        return ret;
+    }
+};
