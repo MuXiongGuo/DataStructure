@@ -16,15 +16,20 @@ struct TreeNode {
 
 class Solution {
 public:
-
-
     int minDepth(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+        if (root->left == nullptr && root->right == nullptr)
+            return 1;
         int left, right;
         if (root->left == nullptr)
             left = INT_MAX;
+        else
+            left = minDepth(root->left);
         if (root->right == nullptr)
-
-
-        return min(minDepth(root->left), minDepth(root->right));
+            right = INT_MAX;
+        else
+            right = minDepth(root->right);
+        return min(left, right) + 1;
     }
 };
