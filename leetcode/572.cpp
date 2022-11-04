@@ -18,12 +18,21 @@ struct TreeNode {
 
 class Solution {
 public:
-    bool isSubtree(TreeNode *root, TreeNode *subRoot) {
+    bool check(TreeNode *root, TreeNode *subRoot) {
+        if (!root && !subRoot)
+            return true;
+        if ((!root && subRoot) || (root && !subRoot) || (root->val != subRoot->val))
+            return false;
+        return check(root->left, subRoot->left) && check(root->right, subRoot->right);
+    }
+
+    bool dfs (TreeNode *root, TreeNode *subRoot) {
         if (root == nullptr)
             return false;
-        if (root->val != subRoot->val)
-            return isSubtree(root->right, subRoot) || isSubtree(root->left, subRoot);
-        if (root->val == subRoot->val)
-            return isSubtree(root->right, subRoot->right) && isSubtree(root->left, subRoot->left);
+        return check(root, subRoot) || dfs(root->left, subRoot) || dfs(root->right, subRoot);
+    }
+
+    bool isSubtree(TreeNode *root, TreeNode *subRoot) {
+        return dfs(root, subRoot);
     }
 };
