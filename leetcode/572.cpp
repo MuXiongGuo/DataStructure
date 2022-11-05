@@ -2,7 +2,7 @@
 #include "queue"
 #include "stack"
 #include "iostream"
-
+#include "unordered_map"
 using namespace std;
 
 struct TreeNode {
@@ -88,6 +88,10 @@ public:
 
 
 // 哈希树
+// 不选用 高度乘素数 也可以
+// 但是 乘素数 会使得哈希值更加分散
+// 加高度 唯一作用 防止0的val 白白抬高了节点的哈希值
+// 重要的是区分左子树右子树 以及 利用左右子树的哈希值 继续运算
 class Solution3 {
 public:
     static constexpr int MAX_N = 1000 + 5;
@@ -144,8 +148,27 @@ public:
         return false;
     }
 };
+//
+//作者：LeetCode-Solution
+//        链接：https://leetcode.cn/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/
+//来源：力扣（LeetCode）
+//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-作者：LeetCode-Solution
-        链接：https://leetcode.cn/problems/subtree-of-another-tree/solution/ling-yi-ge-shu-de-zi-shu-by-leetcode-solution/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+int main() {
+    TreeNode *root = new TreeNode(3);
+    root->left = new TreeNode(4);
+    root->right = new TreeNode(5);
+    root->left->left = new TreeNode(1);
+    root->left->right = new TreeNode(2);
+    root->left->right->left = new TreeNode(0);
+
+    TreeNode *subRoot = new TreeNode(4);
+    subRoot->left = new TreeNode(1);
+    subRoot->right = new TreeNode(2);
+
+    Solution solution5;
+    cout << solution5.isSubtree(root, subRoot) << endl;
+    return 0;
+}
