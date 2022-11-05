@@ -20,9 +20,19 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// 分治
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+    TreeNode* partition(TreeNode *p, int left_inorder, int right_inorder, int left_postorder, int right_postorder,
+                   vector<int> &inorder, vector<int> &postorder) {
+        // 处理 递归终结
+        if (left_inorder == right_inorder) {
+            p->left = new TreeNode(inorder[left_inorder]);
+        }
+
+    }
+
+    TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
 
     }
 };
