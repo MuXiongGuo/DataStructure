@@ -64,7 +64,7 @@ public:
             return root;
         root->left = lowestCommonAncestor(root->left, p, q);
         root->right = lowestCommonAncestor(root->right, p, q);
-        // 此时是公公祖先
+        // 此时是公共祖先
         if (root->left && root->right)
             return root;
         // 其余情况
