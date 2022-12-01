@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 双指针 贪心
 class Solution {
 public:
     int appendCharacters(string s, string t) {
