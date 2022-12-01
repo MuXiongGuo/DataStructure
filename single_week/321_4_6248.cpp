@@ -153,11 +153,15 @@ public:
         return res;
     }
 };
-
+// 黄金法则：连续子串暴力是 n^2，不连续的是 指定长度的是C(n, k) 不指定长度呢么是 2^n
+// 而dp分别在这两种情况下做到了 n 和 n^2
+// 另一个思想是 别总是想着 左边一个组 右边一个再比较
+// 更聪明的事 右边一个 后 弄左边的时候 在 右边的 作减法，这才是聪明的，节约时间的
 
 // 线性时间 更聪明
 // 用哈希线性时间  用数组枚举还是太慢了
 // 左右两个哈希表 就比较笨笨了
+// 能用哈希 因为是 连续子串 上周赛那个是不连续的 所以只能枚举
 class Solution2 {
 public:
     int countSubarrays(vector<int>& nums, int k) {
@@ -169,8 +173,11 @@ public:
             ++cnt[c];
         }
 
-        int res = cnt[0] + cnt[1];
-
+        int res = cnt[0] + cnt[1]; // 不取左边时 能符合多少种情况
+        // cnt 本质上是把 右边所有情况 甚至是不取也包含进去了 cnt[0] = 1 这个就是 不取右也会多一次的情况
+        // 本质上 是通过左边来访问。。。
+        // 不放 0 的话 到时候可以 再各自加1也对（solution3）
+        // 或者是 左右构造完再遍历，就是笨笨一点 （solution4）
         for (int i = pos-1, c = 0; i >= 0; --i) {
             c += nums[i] < k ? 1:-1;
             res += cnt[c] + cnt[c+1];
@@ -178,6 +185,30 @@ public:
         return res;
     }
 };
+
+class Solution4 {
+public:
+    int countSubarrays(vector<int>& nums, int k) {
+        int pos = find(nums.begin(), nums.end(), k) - nums.begin(), n = nums.size();
+        unordered_map<int, int> cnt, cnt2;
+        for (int i = pos+1, c = 0; i < n; ++i) {
+            c += nums[i] > k ? 1:-1;
+            ++cnt[c];
+        }
+        for (int i = pos-1, c = 0; i >= 0; --i) {
+            c += nums[i] > k ? 1:-1;
+            ++cnt2[c];
+        }
+        int res = 0;
+        res += cnt[0]+cnt[1]+cnt2[0]+cnt2[1]+1;
+        for (const auto &el:cnt2) {
+            res += el.second * cnt[-el.first];
+            res += el.second * cnt[-el.first+1];
+        }
+        return res;
+    }
+};
+
 
 
 int main() {
