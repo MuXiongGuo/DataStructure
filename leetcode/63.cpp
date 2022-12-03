@@ -47,8 +47,9 @@ public:
             pre[i] = 1;
         }
 
-        cur[0] = pre[0];
         for (int i = 1; i < m; ++i) {
+            // 避免 原来的1 换下来 那一排不好弄初始化的
+            cur[0] = pre[0];
             for (int j = 0; j < n; ++j) {
                 if (obstacleGrid[i][j] == 1) {
                     cur[j] = 0;
@@ -65,6 +66,7 @@ public:
 };
 
 
+// 优雅
 class Solution3 {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
@@ -74,14 +76,16 @@ public:
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (obstacleGrid[i][j] == 1) {
+                    // 当竖着有石头时 以后的竖0 位置 数值全为0了
                     dp[j] = 0;
                     continue;
                 }
-                if (j > 1) {
+                if (j >= 1) {
+                    // dp本身就是上一行
                     dp[j] += dp[j-1];
                 }
             }
         }
-        return dp[j-1];
+        return dp.back();
     }
 };
