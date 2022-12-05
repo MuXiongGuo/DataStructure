@@ -3,7 +3,7 @@
 using namespace std;
 
 // 超时了
-class Solution {
+class Solution6 {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> ans;
@@ -91,6 +91,17 @@ int main()
     sampleSet.insert(20);
     sampleSet.insert(24);
 
+    sampleSet.insert(32);
+    sampleSet.insert(330);
+    sampleSet.insert(135);
+    sampleSet.insert(244);
+    sampleSet.insert(2231);
+
+    sampleSet.insert(322);
+    sampleSet.insert(3330);
+    sampleSet.insert(1335);
+    sampleSet.insert(2444);
+    sampleSet.insert(22331);
     cout << "The sampleSet container has " << sampleSet.bucket_count()
          << " number of buckets\n\n";
 
@@ -149,7 +160,7 @@ public:
 };
 
 
-class Solution {
+class Solution5 {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         // 自定义对 array<int, 26> 类型的哈希函数
