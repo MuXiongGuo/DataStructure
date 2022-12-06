@@ -23,6 +23,28 @@ void test_2_wei_bag_problem1() {
     cout << dp[weight.size() - 1][bagweight] << endl;
 }
 
+// 滚动数组的背包问题
 int main() {
     test_2_wei_bag_problem1();
+}
+
+
+void test_1_wei_bag_problem() {
+    vector<int> weight = {1, 3, 4};
+    vector<int> value = {15, 20, 30};
+    int bagWeight = 4;
+
+    // 初始化
+    vector<int> dp(bagWeight + 1, 0);
+    for(int i = 0; i < weight.size(); i++) { // 遍历物品
+        // 这里逆序 因为 靠近右边要用之前的上一层 左边, 从左向右会导致前面的没了
+        for(int j = bagWeight; j >= weight[i]; j--) { // 遍历背包容量
+            dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+        }
+    }
+    cout << dp[bagWeight] << endl;
+}
+
+int main() {
+    test_1_wei_bag_problem();
 }
