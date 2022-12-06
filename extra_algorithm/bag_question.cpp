@@ -1,3 +1,4 @@
+// 01背包 每个元素只能用一次
 void test_2_wei_bag_problem1() {
     vector<int> weight = {1, 3, 4};
     vector<int> value = {15, 20, 30};
