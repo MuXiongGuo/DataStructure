@@ -17,7 +17,7 @@ public:
             return;
         for (int i = start_index; i < candidates.size(); ++i) {
             path.push_back(candidates[i]);
-            BackTracking(i, sum+candidates[i], candidates, target);
+            BackTracking(i, sum + candidates[i], candidates, target);
             path.pop_back();
         }
     }
@@ -33,7 +33,8 @@ class Solution2 {
 private:
     vector<vector<int>> result;
     vector<int> path;
-    void backtracking(vector<int>& candidates, int target, int sum, int startIndex) {
+
+    void backtracking(vector<int> &candidates, int target, int sum, int startIndex) {
         if (sum == target) {
             result.push_back(path);
             return;
@@ -49,8 +50,9 @@ private:
 
         }
     }
+
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
         result.clear();
         path.clear();
         sort(candidates.begin(), candidates.end()); // 需要排序
@@ -58,3 +60,4 @@ public:
         return result;
     }
 };
+
