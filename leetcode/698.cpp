@@ -129,7 +129,7 @@ public:
 };
 
 
-class Solution3 {
+class Solution4 {
 public:
     bool canPartitionKSubsets(vector<int> &nums, int k) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
@@ -149,25 +149,25 @@ public:
                 return true;
             }
 
-            for (int i = start; i < n; ++i) {
+            for (int i = start; i >= 0; --i) {
                 if (val + nums[i] > m) {
-                    break;
+                    continue;
                 }
                 if (used[i]) {
                     continue;
                 }
                 used[i] = 1;
-                n -= 1;
-                if (dfs(val + nums[i], i + 1)) {
+                count -= 1;
+                if (dfs(val + nums[i], i - 1)) {
                     return true;
                 }
                 used[i] = 0;
-                n += 1;
+                count += 1;
             }
             return false;
         };
-        while (n != 0) {
-            if (!dfs(0, 0)) {
+        while (count != 0) {
+            if (!dfs(0, n-1)) {
                 return false;
             }
         }
@@ -175,11 +175,47 @@ public:
     }
 };
 
+class Solution5 {
+public:
+    bool canPartitionKSubsets(vector<int> &nums, int k) {
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        if (sum % k > 0) {
+            return false;
+        }
+
+        int n = nums.size();
+        int m = sum/k;
+        vector<bool> dp(1<<n, true);
+
+        function<bool(int, int)> dfs = [&](int s, int val)->bool {
+            if (s == 0) {
+                return true;
+            }
+            if (!dp[s]) {
+                return false;
+            }
+            dp[s] = false;
+            for (int i = 0; i < n; ++i) {
+                if (val+nums[i] > m) {
+                    break;
+                }
+                if ((s >> i)&1) {
+                    if (dfs(s^(1<<i), (val+nums[i])%m)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
+        return dfs((1<<n)-1, 0);
+    }
+};
 
 int main() {
     vector<int> nums = {4, 3, 2, 3, 5, 2, 1};
     int k = 4;
-    Solution3 s;
+    Solution4 s;
     cout << s.canPartitionKSubsets(nums, k) << endl;
     return 0;
 }
