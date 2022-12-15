@@ -25,3 +25,31 @@ public:
     }
 };
 
+
+// 利用异常捕获处理
+// stoi的异常机制 有点垃圾 所以还是算了吧
+class Solution2 {
+public:
+    int maximumValue(vector<string> &strs) {
+        int res = 0;
+        for (auto &s:strs) {
+            int x;
+            try {
+                x = stoi(s);
+            }
+            catch (exception &e) {
+                x = s.size();
+                cout << e.what() << endl;
+            }
+            res = max(res, x);
+        }
+        return res;
+    }
+};
+
+int main() {
+    Solution2 s;
+    vector<string> strs = {"4", "p9hkfes", "oda", "dwajdiwjoiwajiodwajowd"};
+    cout << s.maximumValue(strs) << endl;
+}
+
