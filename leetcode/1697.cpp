@@ -65,6 +65,7 @@ public:
 };
 
 // 并查集
+// 时间复杂度分析 看官网很细节！
 class Solution2 {
 public:
     vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>> &edgeList, vector<vector<int>> &queries) {
