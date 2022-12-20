@@ -47,7 +47,6 @@ public:
 };
 
 // bfs
-// dfs
 class Solution3 {
 public:
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
