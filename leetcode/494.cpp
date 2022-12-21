@@ -71,8 +71,7 @@ public:
 class Solution4 {
 public:
     int res = 0;
-
-    void dfs(int start, int target, int sum, vector<int> &nums) {
+    void dfs(int start, int target, int sum, vector<int> nums) {
         if (start == nums.size()) {
             if (sum == target) {
                 ++res;
@@ -84,7 +83,10 @@ public:
     }
 
     int findTargetSumWays(vector<int> &nums, int target) {
+        clock_t start = clock();
         dfs(0,target,0,nums);
+        clock_t end = clock();
+        cout << "time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
         return res;
     }
 };
@@ -98,10 +100,87 @@ public:
 };
 
 
+// 冰激淋回溯，模拟每一步的操作，更新res
+class Solution6 {
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int res = 0;
+        function<void(int, int)> dfs = [&](int start, int sum) {
+            if (start==nums.size()) {
+                if (sum == target)
+                    ++res;
+                return;
+            }
+
+            dfs(start+1, sum+nums[start]);
+            dfs(start+1, sum-nums[start]);
+        };
+        dfs(0, 0);
+        return res;
+    }
+};
+
+
+class Solution9 {
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        clock_t start = clock();
+        int res = 0;
+        function<void(int, int)> dfs = [&](int start, int sum) {
+            if (start==nums.size()) {
+                if (sum == target)
+                    ++res;
+            } else {
+                dfs(start+1, sum+nums[start]);
+                dfs(start+1, sum-nums[start]);
+            }
+        };
+        dfs(0, 0);
+        clock_t end = clock();
+        cout << "time: " << (double)(end-start)/CLOCKS_PER_SEC << endl;
+        return res;
+    }
+};
+
+
+class Solution10 {
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        clock_t start = clock();
+        int res = 0;
+        auto dfs = [&](auto &dfs, int start, int sum)->void {
+            if (start==nums.size()) {
+                if (sum == target)
+                    ++res;
+            } else {
+                dfs(dfs, start+1, sum+nums[start]);
+                dfs(dfs, start+1, sum-nums[start]);
+            }
+        };
+        dfs(dfs, 0, 0);
+        clock_t end = clock();
+        cout << "time: " << (double)(end-start)/CLOCKS_PER_SEC << endl;
+        auto test = [&](int x, int y)->bool {
+            return x > y;
+        };
+        function<bool(int, int)> xx = [&](int x, int y)->bool {
+            return x > y;
+        };
+        return res;
+    }
+};
+
 int main() {
-    vector<int> nums = {1, 1, 1, 1, 1};
-    int target = 3;
-    Solution s;
-    cout << s.findTargetSumWays(nums, target) << endl;
+    //[2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53]
+    //1000
+//    vector<int> nums = {2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53};
+//    int target = 1000;
+//    Solution9 s;
+//    Solution4 s4;
+//    Solution10 s10;
+//    s.findTargetSumWays(nums, target);
+//    s4.findTargetSumWays(nums, target);
+//    s10.findTargetSumWays(nums, target);
+
     return 0;
 }
