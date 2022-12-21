@@ -24,3 +24,23 @@ public:
         return res;
     }
 };
+
+// 这样写就不会爆了 聪明
+class Solution2 {
+public:
+    int minElements(vector<int> &nums, int limit, int goal) {
+        int res = 0;
+        long long sum = accumulate(nums.begin(), nums.end(), 0ll);
+
+        sum = abs(goal-sum);
+        if (sum == 0) {
+            return res;
+        }
+        res = sum/limit;
+        if (sum%limit!=0) {
+            ++res;
+        }
+
+        return res;
+    }
+};
