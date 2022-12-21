@@ -81,6 +81,25 @@ public:
     }
 };
 
+
+// 自己写一下二分
+class Solution4 {
+public:
+    int lengthOfLIS(vector<int> &nums) {
+        int len = 0,n = nums.size(), arr[n];
+        arr[0] = nums[0];
+        for (int i = 1; i < n; ++i) {
+            if (nums[i] > arr[len]) {
+                arr[++len] = nums[i];
+            } else {
+                auto p = lower_bound(arr, arr+len, nums[i]);
+                *p = nums[i];
+            }
+        }
+        return len+1;
+    }
+};
+
 int main() {
     vector<int> test1{1,2,4,5,7,8,10,11,12,32,34};
     vector<int> test2{1,1,2,4,5,6,6,6,7,7,8,10};
