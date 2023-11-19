@@ -37,6 +37,11 @@ private:
     }
 };
 
+template<typename HashedObj>
+bool HashTable<HashedObj>::contains(const HashedObj &x) const {
+    return false;
+}
+
 template<typename Key>
 class hash{
 public:
