@@ -55,7 +55,12 @@ public:
 
 int main() {
     Solution s;
+   
+
     vector<int> nums = {34, 23, 1, 24, 75, 33, 54, 8};
+
+    int aa = nums.size();
+    
     cout << s.maximumSum(nums) << endl;
     return 0;
 }
