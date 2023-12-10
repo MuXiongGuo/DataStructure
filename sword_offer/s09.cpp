@@ -1,5 +1,5 @@
-#include "bits/stdc++.h"
-
+// #include "bits/stdc++.h"
+#include "vector"
 using namespace std;
 
 class CQueue {
@@ -11,7 +11,6 @@ public:
     void appendTail(int value) {
         a.push_back(value);
     }
-
     int deleteHead() {
         int res = -1;
         if (a.empty() && b.empty()) { return -1;}
