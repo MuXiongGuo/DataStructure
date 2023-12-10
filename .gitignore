@@ -1,5 +1,8 @@
 *
 !.gitignore
-!*.a
-!*.b
+!*.h
+!*.cpp
+!*.txt
+!*.clang-format
+!*.clang-tidy
 !*/
