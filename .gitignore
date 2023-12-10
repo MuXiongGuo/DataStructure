@@ -1,21 +1,5 @@
-# .gitignore
-# 首先忽略所有的文件
 *
-
-!*.c++
-!*.cc
-!*.cp
-!*.cpp
-!*.cxx
-!*.h
-!*.h++
-!*.hh
-!*.hp
-!*.hpp
-!*.hxx
-!*.C
-!*.H
-!*.c
-！*.gitignore
-!*.clang-format
-!*.clang-tidy
+!.gitignore
+!*.a
+!*.b
+!*/
