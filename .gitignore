@@ -1,9 +1,8 @@
-/cmake-build-debug/
-*.iml
-*.xml
-*.gitignore
-*.name
-/.idea/sonarlint/issuestore/index.pb
-*.exe
-*.o
-*.json
+*
+!.gitignore
+!*.h
+!*.cpp
+!*.txt
+!*.clang-format
+!*.clang-tidy
+!*/

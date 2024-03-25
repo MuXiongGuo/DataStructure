@@ -1,4 +1,5 @@
-#include "bits/stdc++.h"
+#include <utility>
+#include "vector"
 
 using namespace std;
 
@@ -52,5 +53,50 @@ public:
             }
         }
         return dp[n];
+    }
+};
+
+class Solution4 {
+public:
+    int climbStairs(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+        vector<int> dp (n);
+        dp[0] = 1;
+        dp[1] = 2;
+        int count = 2;
+        while (count != n) {
+            dp[count] = dp[count-1]+dp[count-2];
+            count++;
+        }
+        return dp[n-1];
+    }
+};
+
+class Solution5 {
+public:
+    int climbStairs(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+        int pre = 1, cur = 2;
+        int ans = 0;
+        while (n-->2) {
+            // ans = pre+cur;
+            // int tmp = cur;
+            // cur = ans;
+            // pre = tmp;
+            ans = cur+pre;
+            pre = cur;
+            cur = ans;
+        }
+        return ans;
     }
 };
