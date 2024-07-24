@@ -2,7 +2,8 @@
 !.gitignore
 !*.h
 !*.cpp
-!*.txt
 !*.clang-format
 !*.clang-tidy
 !*/
+build/
+leetcode/77.h
