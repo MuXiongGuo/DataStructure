@@ -45,3 +45,19 @@ class Solution2 {
         return slow;
     }
 };
+// 交换法
+class Solution3 {
+   public:
+    int removeElement(vector<int>& nums, int val) {
+        int left = 0, right = nums.size()-1;
+        while (left <= right) {
+            if (nums[left] == val) {
+                swap(nums[left], nums[right]);
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return left;
+    }
+};
